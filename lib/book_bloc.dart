@@ -64,6 +64,8 @@ class BookBloc {
 
     _booksList[index].rank = _booksList[index].rank-1;
 
+    _booksList.sort((a, b) => a.rank.compareTo(b.rank));
+
     booksListSink.add(_booksList);
 
    }
