@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'book.dart';
 
-class BookBlock {
+class BookBloc {
 
   List<Book> _booksList = [
     Book("001","Harry potter","John Doe",1),
@@ -67,13 +67,13 @@ class BookBlock {
    }
 
   // constructor
-  BookBlock(){
+  BookBloc(){
 
     _booksListStreamController.add(_booksList);
 
-    _rankUpBookStreamController.stream.listen(_rankUp);
+ //   _rankUpBookStreamController.stream.listen(_rankUp);
 
-    _rankDownBookStreamController.stream.listen(_rankDown);
+ //   _rankDownBookStreamController.stream.listen(_rankDown);
 
   }
 
