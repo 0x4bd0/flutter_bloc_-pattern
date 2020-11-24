@@ -18,11 +18,12 @@ class BookBloc {
 
   );
 
-  final _rankUpBookStreamController = StreamController<List<Book>>(
+  final _rankUpBookStreamController = StreamController<Book>(
+    
 
   );
 
-  final _rankDownBookStreamController = StreamController<List<Book>>(
+  final _rankDownBookStreamController = StreamController<Book>(
 
   );
 
@@ -33,34 +34,33 @@ class BookBloc {
 
   StreamSink<List<Book>> get booksListSink => _booksListStreamController.sink;
 
-  StreamSink<List<Book>> get rankUpBookSink => _rankUpBookStreamController.sink;
+  StreamSink<Book> get rankUpBookSink => _rankUpBookStreamController.sink;
 
-  StreamSink<List<Book>> get rankDownBookSink => _rankDownBookStreamController.sink;
+  StreamSink<Book> get rankDownBookSink => _rankDownBookStreamController.sink;
 
 
   // methods
    
    _rankUp(Book book) {
 
+
+
     int rank = book.rank;
-    int new_rank = rank++;
 
     final index = _booksList.indexWhere((item) => item.id == book.id );
 
-    _booksList[index].rank = new_rank;
+    _booksList[index].rank = _booksList[index].rank+1;
 
-    booksListSink.add(_booksList);
+    booksListSink.add(_booksList.sort((a,b) => a.rank > b.rank));
 
    }
 
-   _rankDown(Book book) {
-     
-    int rank = book.rank;
-    int new_rank = rank--;
+   _rankDown(Book book) {     
+
 
     final index = _booksList.indexWhere((item) => item.id == book.id );
 
-    _booksList[index].rank = new_rank;
+    _booksList[index].rank = _booksList[index].rank-1;
 
     booksListSink.add(_booksList);
 
@@ -71,9 +71,9 @@ class BookBloc {
 
     _booksListStreamController.add(_booksList);
 
- //   _rankUpBookStreamController.stream.listen(_rankUp);
+    _rankUpBookStreamController.stream.listen(_rankUp);
 
- //   _rankDownBookStreamController.stream.listen(_rankDown);
+    _rankDownBookStreamController.stream.listen(_rankDown);
 
   }
 

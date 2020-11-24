@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
                itemBuilder: (context, index){
                   return     Card(
                     child: ListTile(
-                      leading: Text("${snapshot.data[index].id}"),
+                      leading: Text("${snapshot.data[index].id},  Rank : ${snapshot.data[index].rank}"),
                       title: Text("${snapshot.data[index].title}"),
                       subtitle: Text("${snapshot.data[index].author}"),
                       trailing: Column(
@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
                           child: FlatButton(
                             child: Icon(Icons.thumb_up, color: Colors.green,),
                             onPressed: () async {
-                              await _bookBloc.rankUpBookSink(snapshot.data[index].id);
+                             _bookBloc.rankUpBookSink.add(snapshot.data[index]);
                             },
                           ),
                         ),
@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
                           child: FlatButton(
                             child: Icon(Icons.thumb_down, color: Colors.red,),
                             onPressed: () => {
-                              print('down')
+                             _bookBloc.rankDownBookSink.add(snapshot.data[index]);
                             },
                           ),
                         )
