@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
                           child: FlatButton(
                             child: Icon(Icons.thumb_down, color: Colors.red,),
                             onPressed: () => {
-                             _bookBloc.rankDownBookSink.add(snapshot.data[index]);
+                             _bookBloc.rankDownBookSink.add(snapshot.data[index])
                             },
                           ),
                         )
