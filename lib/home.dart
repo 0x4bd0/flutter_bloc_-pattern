@@ -39,7 +39,26 @@ class _HomePageState extends State<HomePage> {
                       leading: Text("${snapshot.data[index].id}"),
                       title: Text("${snapshot.data[index].title}"),
                       subtitle: Text("${snapshot.data[index].author}"),
-                      trailing: Icon(Icons.book),
+                      trailing: Column(
+                      children: <Widget>[
+                        Expanded(
+                          child: FlatButton(
+                            child: Icon(Icons.thumb_up, color: Colors.green,),
+                            onPressed: () async {
+                              await _bookBloc.rankUpBookSink(snapshot.data[index].id);
+                            },
+                          ),
+                        ),
+                        Expanded(
+                          child: FlatButton(
+                            child: Icon(Icons.thumb_down, color: Colors.red,),
+                            onPressed: () => {
+                              print('down')
+                            },
+                          ),
+                        )
+                      ],
+                    ),
                     ),
                   );
                },
